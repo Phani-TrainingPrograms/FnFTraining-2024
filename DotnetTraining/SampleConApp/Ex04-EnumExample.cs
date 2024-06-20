@@ -54,13 +54,15 @@ namespace SampleConApp
                 Console.Write(value + " ") ; 
             }
             Console.WriteLine();
-            //Take the input into a string variable
-            string accType = Console.ReadLine();
-            //Parse the string to the enum type. 
-            object convertedValue = Enum.Parse(typeof(AccountType), accType, true);
-            //Unbox the object to the Enum Type. 
-            AccountType acc = (AccountType)convertedValue;
+            ////Take the input into a string variable
+            //string accType = Console.ReadLine();
+            ////Parse the string to the enum type. 
+            //object convertedValue = Enum.Parse(typeof(AccountType), accType, true);
+            ////Unbox the object to the Enum Type. 
+            //AccountType acc = (AccountType)convertedValue;
 
+            //Try this after U learn Boxing and Unboxing.
+            AccountType acc = (AccountType)Enum.Parse(typeof(AccountType), Console.ReadLine()); 
             Console.WriteLine(acc);
             Console.WriteLine($"The internal data value is {(int)acc}");
             Console.WriteLine($"The Min balance for this account type is {GetMinBalance(acc)}");

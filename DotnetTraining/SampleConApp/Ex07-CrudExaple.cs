@@ -20,6 +20,22 @@ namespace SampleConApp
         public string Name { get; set; }
         public string Address { get; set; }
         public int CustomerBill { get; set; }
+
+        public override string ToString()
+        {
+            return $"Name: {Name}\tAddress: {Address}\tBill: {CustomerBill:C}";
+        }
+
+        //Used to implement logical equivalance for an object. 
+        public override bool Equals(object obj)
+        {
+           Customer unboxed = obj as Customer;
+            if ((this.Id == unboxed.Id) && (this.Name == unboxed.Name))
+            {
+                return true;
+            }
+            return false;
+        }
     }
 
     /// <summary>
