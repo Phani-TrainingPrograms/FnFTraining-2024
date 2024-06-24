@@ -4,14 +4,29 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{CDC5B556-454F-4DCE-AB4A-FC49E7625E69}</ProjectGuid>
+    <ProjectGuid>{163918DB-0DC0-4853-BB3B-EE24D9BBE8FB}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>SampleConApp</RootNamespace>
-    <AssemblyName>SampleConApp</AssemblyName>
+    <RootNamespace>Frameworks</RootNamespace>
+    <AssemblyName>Frameworks</AssemblyName>
     <TargetFrameworkVersion>v4.8.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -22,7 +37,6 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <CheckForOverflowUnderflow>true</CheckForOverflowUnderflow>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -34,7 +48,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <StartupObject>SampleConApp.Ex20_BasicRecaps</StartupObject>
+    <StartupObject>Frameworks.UIComponents.UCMainProgram</StartupObject>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -48,37 +62,31 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Ex02-DataTypes.cs" />
-    <Compile Include="Ex01-BasicIO.cs" />
-    <Compile Include="Ex03-NamespacesExample.cs" />
-    <Compile Include="Ex04-EnumExample.cs" />
-    <Compile Include="Ex05-ArraysExample.cs" />
-    <Compile Include="Ex06-ClassesDemo.cs" />
-    <Compile Include="Ex07-CrudExample.cs" />
-    <Compile Include="Ex08-AccessSpecifiers.cs" />
-    <Compile Include="Ex09-Inheritance.cs" />
-    <Compile Include="Ex10-MethodOverriding.cs" />
-    <Compile Include="Ex11-AbstractClasses.cs" />
-    <Compile Include="Ex12-InterfaceExample.cs" />
-    <Compile Include="Ex12b-InterfaceProgramming.cs" />
-    <Compile Include="Ex13-SealedClasses.cs" />
-    <Compile Include="Ex14-ObjectClass.cs" />
-    <Compile Include="Ex15-Functions.cs" />
-    <Compile Include="Ex16-Constructors.cs" />
-    <Compile Include="Ex17-ExceptionHandling.cs" />
-    <Compile Include="Ex18-TuplesExample.cs" />
-    <Compile Include="Ex19-VarKeywordUsage.cs" />
-    <Compile Include="Ex20-BasicRecaps.cs" />
+    <Compile Include="DataComponents\DataComponent.cs" />
+    <Compile Include="Entities\Employee.cs" />
+    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Util\ILogger.cs" />
-    <Compile Include="Util\MyConsole.cs" />
-    <Compile Include="Util\SampleConsoleException.cs" />
+    <Compile Include="UIComponents\UCMainProgram.cs" />
+    <Compile Include="Utils\MyConsole.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="Readme.md" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Menu.txt" />
+    <Content Include="menuFile.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.8.1">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.8.1 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
