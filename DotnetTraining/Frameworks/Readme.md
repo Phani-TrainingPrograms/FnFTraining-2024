@@ -24,4 +24,11 @@
 3. .NET 2.0->2005 We got Generics, Anonymous methods for Delegates. 
 4. .NET 3.0, 3.5, 4.0-> 2008 with Visual Studio.NET was renamed as simply Visual Studio. New frameworks for Windows, Web came into existance: WPF(Windows 7),WCF, WF, LINQ.
 5. .NET 4.5 -> 2010,12 ->.NET 4.0 without addins came into existance.(Mobile Computing).
-.NET with C# 10->2022-> Shorter code snippets, improvised technology for multi devices, Blazor. 
+.NET with C# 10->2022-> Shorter code snippets, improvised technology for multi devices, Blazor.
+
+## Using Nuget Packages
+1. Right click on the dependencies in the Solution Explorer and download the required packages for the Application.
+2. For Reading the appsettings.json, U should include the following packages:
+  - Microsoft.Extensions.Configuration
+  - Microsoft.Extensions.Configuration.Json
+3. Implement the code as mentioned in the Ex06FileIO to load the Configuration settings. 
