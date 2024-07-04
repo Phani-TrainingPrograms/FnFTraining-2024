@@ -20,16 +20,16 @@ namespace FrameworkExamples.Entities
         public int CustomerID { get; set; }
         public string CustomerName { get; set; } = string.Empty;
         public string CustomerAddress { get; set; } = string.Empty;
-        public int BillAmount { get { return GenerateBill(); } }
+        public int BillAmount { get; set; }
 
-        private int GenerateBill()
+        private void GenerateBill()
         {
             var amount = 0;
             foreach (var item in products)
             {
                 amount += item.Price * item.Quantity;
             }
-            return amount;
+            BillAmount = amount;
         }
         public void AddToCart(Product product)
         {
@@ -38,16 +38,21 @@ namespace FrameworkExamples.Entities
                 throw new Exception("Product Details are not set");
             }
             products.Add(product);
+            GenerateBill();
         }
 
         public void RemoveFromCart(Product product)
         {
-            if(!products.Remove(product))
+            if (products.Remove(product))
+            {
+                GenerateBill();
+            }else
                 throw new Exception("Product not found to remove)");
         }
         public override string ToString()
         {
-            return $"Name: {CustomerName}\nCustomer Address: {CustomerAddress}\nBillDate: {BillDate}\n BillAmount: {BillAmount}\n\n";
+            //return $"Name: {CustomerName}\nCustomer Address: {CustomerAddress}\nBillDate: {BillDate}\n BillAmount: {BillAmount}\n\n";
+            return $"{BillDate.ToString("dd/MM/yyyy")},{CustomerID},{CustomerName}, {CustomerAddress}, {BillAmount}\n";
         }
     }
 }
