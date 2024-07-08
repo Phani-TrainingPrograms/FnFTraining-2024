@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web Forms 5.0</title>
+</head>
+<body>
+    <h2>Using Forms of HTML 5.0</h2>
+    <article>
+        <h2>Using HTML forms</h2>
+        <p>Forms are used to take inputs from the user and process it to a storage location like a centralized Database or a local Storage where the content will be saved within the browser. 
+            <br/>
+         Forms are usually processed in the server side. If the App is using only client side scripting, then the form does not need the attributes called action and method.   
+        </p>
+    </article>
+    <form>
+        <h1>Student Registration Form</h1>
+        <hr>
+        <p><input type="text" placeholder="Name please!" required</p>
+        <p><input type="email" placeholder="Email please!" required</p>
+        <p>Date of Birth: <input type="date" placeholder="Date of Birth" required</p>
+        <p>
+            Select the Qualification:
+            <select>
+                <option>Graduation</option>
+                <option>Under Graduation</option>
+                <option>Post Graduation</option>
+                <option>Researcher</option>
+            </select>
+        </p>
+        <p>Select the Home City:
+            <datalist id="dtCities">
+                <option>Bangalore</option>
+                <option>Pune</option>
+                <option>Mumbai</option>
+                <option>Mysore</option>
+                <option>Hyderabad</option>
+                <option>Vizag</option>
+                <option>Tirupathi</option>
+                <option>Hubli</option>
+                <option>Chennai</option>
+                <option>Madurai</option>
+                <option>Coimbatore</option>
+                <option>Trichi</option>
+                <option>Vijayawada</option>
+                <option>Warangal</option>
+                <option>Panaji</option>
+            </datalist>
+            <input list="dtCities" placeholder="City Name"/>
+        </p>
+        <p>
+            Enter the Gender:
+            <input type="radio" name="rdGender" id="rdGender">Male
+            <input type="radio" name="rdGender" id="rdGender">FeMale
+            <input type="radio" name="rdGender" id="rdGender">Others
+        </p>
+        <p>
+            <input type="number" min="18" max="45" placeholder="Age here!"
+        </p>
+        <p>
+            Rate URself on HTML from 1 to 10:
+            <input type="range" min="1" max="10" step="1" id="txtRange" value=""/>
+        </p>
+        <p>
+            Change the Background color:
+            <input type="color" placeholder="Color please"/>
+        </p>
+        <p>
+            <input type="search" placeholder="Search for city here"/>
+            </p>
+
+        <input type="submit" value="Register"/>
+    </form>
+</body>
+</html>

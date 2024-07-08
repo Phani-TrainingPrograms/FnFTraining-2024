@@ -48,3 +48,14 @@
 </body>
 </html>
 ```
+
+---------------------------------------------------------------------
+### Important tags of a HTML Document
+1. h1....h6 -> Represents an heading for a document and its sections.
+2. div -> Represents a Division within the document which is used to divide the Document into parts. 
+3. article, section, header, footer -> Represents a section within the Page. It is new to HTML5, works similar to div but for better readability. Now instead of using only div elements(HTML 4.0) we can divide our content into sections, articles, headers, footers and many more. 
+4. p -> Represents a small paragraph within a division of the document. Div can have paragraphs but its reverse is not acceptable.
+5. We have formatting tags for formating texts. Listing tags, form tags, image tags , media Tags and many more.
+6.: Todo: Create a simple page which explains about URself, like Details about U, UR Town and the College that U have graduated. 
+
+
