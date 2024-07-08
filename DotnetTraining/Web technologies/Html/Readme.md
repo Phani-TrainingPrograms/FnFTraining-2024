@@ -15,4 +15,5 @@
 ### HTML Basics
 1. Files are saved with extension .htm
 2. HTML5 Documents will have a Prologue called DocType which is html. 
-3. Every Html Doc starts with &lt;html&gt; tag and ends with an end tag which is &lt;/html&gt;   
+3. Every Html Doc starts with &lt;html&gt; tag and ends with an end tag which is &lt;/html&gt; 
+4. It shall have 2 sections, head and body. head section contains the information, metadata, title about the document and the body section contains the content of the document.  
