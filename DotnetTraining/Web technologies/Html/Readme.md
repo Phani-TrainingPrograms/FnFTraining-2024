@@ -17,3 +17,34 @@
 2. HTML5 Documents will have a Prologue called DocType which is html. 
 3. Every Html Doc starts with &lt;html&gt; tag and ends with an end tag which is &lt;/html&gt; 
 4. It shall have 2 sections, head and body. head section contains the information, metadata, title about the document and the body section contains the content of the document.  
+5. A Sample Html Doc
+```
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <article>
+        <section>
+            <header>
+                <h1>Main Heading of the Document</h1>
+            </header>
+            <article>
+                <h2>Sub Heading for the section</h2>
+                <hr/>
+                <div>
+                    Represents Division within the document. 
+                    <p>Can have paragraphs within the divs</p>
+                </div>
+            </article>
+            <footer>
+                <i>End of the section within the document</i>
+            </footer>
+        </section>
+    </article>
+</body>
+</html>
+```
