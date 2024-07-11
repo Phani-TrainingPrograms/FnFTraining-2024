@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./Ex05Functions.js"></script>
+    <script src="./ExAddingElements.js"></script>
+    <script>
+        function onClick() {
+            //Use the DOM to get the elements. 
+            let name = document.getElementById('txtName').value;
+            document.getElementById("spDisplay").innerText = "The Name is " + name
+        }
+
+        function deleteItem(item){
+            removeItem(item);
+            populateItems();
+        }
+
+        function populateItems(){
+            let items = getAllItems();
+            let ul = document.getElementById("lstItems");
+            //let ul = document.querySelector('div:nth-child(3) > p:nth-child(2) > ul');
+            
+            ul.innerHTML = "";//reset it to blank
+            for (const item of items) {
+                let line = `<li>${item}<a href="#" onclick="deleteItem('${item}')">X</a></li>`
+                ul.innerHTML += line;
+            } 
+        }
+        
+        function onAddItem(){
+            //get the value to add. 
+            //const item = document.getElementById("txtItem").value;
+            const item = document.querySelector("div:nth-child(3) > p > input").value ;          
+            //call the addToCart func from the external js file
+            addItem(item);
+            //populate the data into the ul tag.
+            populateItems();
+        }
+
+        function onGetResult(){
+            //Get the values
+            const v1 = parseFloat(document.getElementById("txtFirstValue").value);
+            const v2 = parseFloat(document.getElementById("txtSecondValue").value);
+            const op = document.getElementById("slOption").value;
+            const p = document.getElementById("pResult");
+            //switch case statement
+            switch (op) {
+                case "Add": 
+                    p.innerText = addFunc(v1, v2);
+                    break;
+            
+                default:
+                    break;
+            }
+            //on each case, call the appropriate function
+            //Set the result to the p element. 
+        }
+    </script>
+    <style>
+        div{
+            border: 2px solid blue;
+            box-shadow: 2px 2px 1px 1px red;
+            width: 45%;
+            margin: 15px;
+            display: inline-block;
+            vertical-align: top;    
+        }
+        a{
+            margin: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <h1>Example of DOM usage</h1>
+        <hr />
+        <p>
+            Enter the Name:
+            <input id="txtName" placeholder="Name please!!!" />
+            <button onclick="onClick()">Submit</button>
+        </p>
+        <p style="color:red">
+            <span id="spDisplay"></span>
+        </p>
+    </div>
+    <div>
+        <h1>Math Calc</h1>
+        <hr>
+        <p>
+            Enter the First value: 
+            <input type="number" id="txtFirstValue"/>
+        </p>
+        <p>
+            Select the Option : 
+            <select id="slOption">
+                <option>Select</option>
+                <option>Add</option>
+                <option>Subtract</option>
+                <option>Multiply</option>
+                <option>Divide</option>
+            </select>    
+        </p>
+        <p>
+            Enter the second value: 
+            <input type="number" id="txtSecondValue"/>
+        </p>
+        <p>
+            <button onclick="onGetResult()">Get Result</button>
+        </p>
+        <p id="pResult" style="border: 2px dashed;color: indianred;">            
+        </p>
+    </div>
+
+    <div>
+        <h1>Adding Elements to Array</h1>
+        <hr>
+        <p>
+            Enter the Item to add: 
+            <input placeholder="Enter the Item Name" id="txtItem"/>
+            <button onclick="onAddItem()">Add to Cart</button>
+        </p>
+        <p>
+            List of Items: <br/>
+            <ul id="lstItems"></ul>
+        </p>
+    </div>
+</body>
+</html>
