@@ -8,25 +8,44 @@ class Employee{
 }
 
 class EmployeeRepo{
-   data = [
-      new Employee(111, "Phaniraj", "bangalore", 56000),
-      new Employee(112, "Vinod", "Shimoga", 56000),
-      new Employee(113, "Venkatesh", "Bellary", 50000),
-      new Employee(114, "Banu Prakash", "Bangalore", 46000)
-   ];//Represents the data of the Class. 
+   data = []//Represents the data of the Class. 
 
-   addNewEmployee = (emp) => [...this.data, emp]; //new feature of ES7. 
-
+   constructor(){
+      this.loadData();
+   } 
+   loadData = () => {
+      if(localStorage.getItem("empList") != null){
+         const json = localStorage.getItem("empList");
+         this.data = JSON.parse(json); 
+      }      
+   }
+   saveData = () =>{
+      const json = JSON.stringify(this.data);
+      localStorage.setItem("empList", json);
+   }
+   //addNewEmployee = (emp) => this.data = [...this.data, emp]; 
+   addNewEmployee = (emp) =>{
+      this.loadData();//gets the existing data from the storage...
+      this.data = [...this.data, emp];
+      this.saveData();
+   }
    deleteEmployee = (id) => {
+      this.loadData();
       let index = this.data.findIndex((e)=>e.empId == id);
-      this.data.splice(index, 1);//removing an element in Js's array. 
+      this.data.splice(index, 1);//removing an element in Js's array.
+      this.saveData(); 
    }
 
-   getAllEmployees = () => [...this.data];
+   getAllEmployees = () => {
+      this.loadData();
+      return this.data;
+   }
 
    updateEmployee = (id, emp) => {
+      this.loadData();
       let index = this.data.findIndex((e)=>e.empId == id);
       this.data.splice(index, 1, emp);//Removes the no of elements(2nd arg) from the specific index(1st arg) and replaces it with the emp object(3rd arg)
+      this.saveData();
    }
 }
 
