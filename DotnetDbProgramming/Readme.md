@@ -1,7 +1,7 @@
 # Database programming using EntityFrameworkCore
 ### Steps for Creating the Project
 1. Create a new .NET CORE ClassLibrary Project.
-2. Add the required Nuget packages required for the EF core. 
+2. Add the required Nuget packages for EF core data access model. 
 3. Create the Entity Class under the folder called Models. This class represents the table of the database.  
 4. Create a folder called Data and inside it, create a DataContext class derived from Microsoft.EntityFrameworkCore.DbContext and implement the following methods:
 	- override the OnConfiguring method where U define the connection string required for your Db Connection that is used to generate the classes.
