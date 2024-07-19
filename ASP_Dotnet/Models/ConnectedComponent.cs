@@ -36,10 +36,10 @@ namespace SampleWebApp.Models
         private const string STRDELETE = "DELETE FROM STUDENTTABLE WHERE StudentId = @id";
         #endregion
 
-        #region IDataComponent Implementations
-        public void AddNewStudent(Student student)
+
+        private void AddRecordUsingSqlStatement(Student student)
         {
-            using(var conn = new SqlConnection(STRCONNECTION))
+            using (var conn = new SqlConnection(STRCONNECTION))
             {
                 try
                 {
@@ -57,12 +57,46 @@ namespace SampleWebApp.Models
                 {
                     throw new Exception("Error in Adding Student", ex);
                 }
-                finally 
-                { 
-                    conn.Close(); 
+                finally
+                {
+                    conn.Close();
                 }
             }
         }
+
+        private void AddRecordUsingSProc(Student student)
+        {
+            using(SqlConnection con = new SqlConnection(STRCONNECTION))
+            {
+                SqlCommand cmd = new SqlCommand("AddNewStudent", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@name", student.StudentName);
+                cmd.Parameters.AddWithValue("@email", student.StudentEmail);
+                cmd.Parameters.AddWithValue("@phone", student.StudentPhone);
+                try
+                {
+                    cmd.Connection.Open();
+                    cmd.ExecuteNonQuery();
+
+                }
+                catch (SqlException ex)
+                {
+                    throw new Exception("Error while adding Student, Please view Inner Exception for further Info", ex);
+                }
+                finally
+                {
+                    con.Close();
+                }
+            }
+        }
+        #region IDataComponent Implementations
+        public void AddNewStudent(Student student)
+        {
+            //AddRecordUsingSqlStatement();
+            AddRecordUsingSProc(student);
+        }
+
+       
 
         public void DeleteStudent(int studentId)
         {
