@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -17,21 +17,37 @@ namespace SampleWebApp.Models
 
         private SqlDataAdapter adapter;
         private DataSet ds;
+        private SqlCommandBuilder sqlCommandBuilder;
 
         public DisconnectedComponent()
         {
             adapter = new SqlDataAdapter(SELECTSTATEMENT , _conString);
+            sqlCommandBuilder = new SqlCommandBuilder(adapter);
             ds = new DataSet("myTables");
             adapter.Fill(ds, "myFirstTable");
         }
         public void AddNewStudent(Student student)
         {
-            throw new NotImplementedException();
+            DataRow row = ds.Tables[0].NewRow();
+            row[1] = student.StudentName;
+            row[2] = student.StudentEmail;
+            row[3] = student.StudentPhone;
+            ds.Tables[0].Rows.Add(row);
+            adapter.Update(ds, "myFirstTable");  
         }
 
         public void DeleteStudent(int studentId)
         {
-            throw new NotImplementedException();
+            foreach (DataRow row in ds.Tables[0].Rows)
+            {
+                if (row[0].ToString() == studentId.ToString())
+                {
+                    row.Delete();
+                    adapter.Update(ds, "myFirstTable");
+                    return;
+                }
+            }
+            throw new Exception("Record not found to delete");
         }
 
         public List<Student> GetAllStudents()
@@ -56,7 +72,18 @@ namespace SampleWebApp.Models
 
         public void UpdateStudent(Student student)
         {
-            throw new NotImplementedException();
+            foreach (DataRow row in ds.Tables[0].Rows)
+            {
+                if (row[0].ToString() == student.StudentId.ToString())
+                {
+                    row[1] = student.StudentName;
+                    row[2] = student.StudentEmail;
+                    row[3] = student.StudentPhone;
+                    adapter.Update(ds, "myFirstTable");
+                    return;
+                }
+            }
+            throw new Exception("Record cannot be updated as no record is found");
         }
     }
 }
