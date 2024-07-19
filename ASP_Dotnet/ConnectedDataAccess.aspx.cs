@@ -18,16 +18,55 @@ namespace SampleWebApp
 {
     public partial class ConnectedDataAccess : System.Web.UI.Page
     {
+        static IDataComponent component = new ConnectedComponent();
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
-                var com = new ConnectedComponent();
-                var names = com.GetAllStudents();
-                foreach (var name in names)
-                {
-                    lstStudents.Items.Add(name);
-                }
+                lblError.Text = string.Empty;
+                var students = component.GetAllStudents();
+                lstStudents.DataSource = students;
+                lstStudents.DataTextField = "StudentName";
+                lstStudents.DataValueField = "StudentId";
+                lstStudents.DataBind();
+            }
+        }
+
+        protected void lstStudents_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            var selected = int.Parse(lstStudents.SelectedItem.Value);
+            var records = component.GetAllStudents();
+            var selectedStudent = records.FirstOrDefault(s => s.StudentId == selected);
+            if (selectedStudent != null) 
+            {
+                txtId.Text = selectedStudent.StudentId.ToString();
+                txtName.Text = selectedStudent.StudentName;
+                txtEmail.Text = selectedStudent.StudentEmail;
+                txtPhone.Text = selectedStudent.StudentPhone.ToString();
+            }
+            else
+            {
+                lblError.Text = "Student details not found!!!";
+            }
+        }
+
+        protected void btnAdd_Click(object sender, EventArgs e)
+        {
+            //create the student object with inputs from the user 
+            var student = new Student();
+            student.StudentName = txtName.Text;
+            student.StudentEmail = txtEmail.Text;
+            student.StudentPhone = Convert.ToInt64(txtPhone.Text);
+            //Call the API to insert the record
+
+            try
+            {
+                component.AddNewStudent(student);
+                lblError.Text = "Student added successfully to the database";
+            }
+            catch (Exception ex)
+            {
+                lblError.Text = ex.Message;
             }
         }
     }
