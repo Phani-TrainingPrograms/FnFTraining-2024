@@ -7,6 +7,7 @@ using System.Web.UI.WebControls;
 using System.Data.SqlClient;
 using SampleWebApp.Models;
 using System.Data;
+using SampleWebApp.Util;
 //ADO.NET is the oldest framwork for data connectivity. It has 2 ways of interacting with the database: Connected(Desktop Centric) and Disconnected Models(Web Centric). 
 //The App will have const connectivity with the database while its reading the records. 
 //In connected model, we need 3 classes to interact with the database:
@@ -18,7 +19,7 @@ namespace SampleWebApp
 {
     public partial class ConnectedDataAccess : System.Web.UI.Page
     {
-        static IDataComponent component = new ConnectedComponent();
+        static IDataComponent component = DataComponentFactory.CreateComponent();
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -63,11 +64,17 @@ namespace SampleWebApp
             {
                 component.AddNewStudent(student);
                 lblError.Text = "Student added successfully to the database";
+                Page_Load(sender, EventArgs.Empty);
             }
             catch (Exception ex)
             {
                 lblError.Text = ex.Message;
             }
+        }
+
+        protected void btnDelete_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
