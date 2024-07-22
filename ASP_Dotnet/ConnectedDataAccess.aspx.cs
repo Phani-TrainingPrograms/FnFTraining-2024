@@ -19,11 +19,12 @@ namespace SampleWebApp
 {
     public partial class ConnectedDataAccess : System.Web.UI.Page
     {
-        static IDataComponent component = DataComponentFactory.CreateComponent();
+        static IDataComponent component = null;
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
+                component = DataComponentFactory.CreateComponent(); 
                 lblError.Text = string.Empty;
                 var students = component.GetAllStudents();
                 lstStudents.DataSource = students;
@@ -35,6 +36,7 @@ namespace SampleWebApp
 
         protected void lstStudents_SelectedIndexChanged(object sender, EventArgs e)
         {
+            component = DataComponentFactory.CreateComponent();
             var selected = int.Parse(lstStudents.SelectedItem.Value);
             var records = component.GetAllStudents();
             var selectedStudent = records.FirstOrDefault(s => s.StudentId == selected);
@@ -62,6 +64,7 @@ namespace SampleWebApp
 
             try
             {
+                component = DataComponentFactory.CreateComponent();
                 component.AddNewStudent(student);
                 lblError.Text = "Student added successfully to the database";
                 Page_Load(sender, EventArgs.Empty);
