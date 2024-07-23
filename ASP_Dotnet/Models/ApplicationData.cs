@@ -7,12 +7,26 @@ using System.Web.SessionState;
 
 namespace SampleWebApp.Models
 {
-    public class Product
+    public class Product : IComparable<Product>
     {
         public int Id { get; set; }
         public string Name { get; set; }
         public int Price { get; set; }
         public string Image { get; set; } //Path of the Image. 
+
+        public override int GetHashCode()
+        {
+            return Id;
+        }
+
+        public override bool Equals(object obj)
+        {
+            return GetHashCode() == obj.GetHashCode();
+        }
+        public int CompareTo(Product other)
+        {
+            return Name.CompareTo(other.Name);
+        }
     }
     //DirectoryInfo.GetFiles, 
     public static class ApplicationData
@@ -34,7 +48,7 @@ namespace SampleWebApp.Models
                 product.Id = ++index; 
                 products.Add(product);
             }
-            
+            products.ToList().Sort();
             return products;
         }
         static ApplicationData()
