@@ -11,6 +11,14 @@ namespace SampleWebApp
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (Page.User.Identity.IsAuthenticated)
+            {
+                lblUser.Text ="Welcome " + Page.User.Identity.Name;
+            }
+            else
+            {
+                lblUser.Text = "Anonymous User! Please register for more user Experience";
+            }
             lblTime.Text = DateTime.Now.Year.ToString();
         }
     }

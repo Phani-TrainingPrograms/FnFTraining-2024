@@ -17,12 +17,20 @@ namespace SampleWebApp
             var path = Server.MapPath("~//Images");
             var data = ApplicationData.CreateProducts(path);
             Application["data"] = data;
+
+            //For user authenication purpose.......
+            var users = new Dictionary<string, string>();
+            users.Add("admin", "apple@123");
+            users.Add("user", "user@123");
+            users.Add("tester", "tester@123");
+            Application["users"] = users;
         }
 
         //Event handler when a Session Starts. 
         protected void Session_Start(object sender, EventArgs e)
         {
-
+            Queue<Product> recentList = new Queue<Product>();
+            Session.Add("recentList", recentList);
         }
     }
 }
