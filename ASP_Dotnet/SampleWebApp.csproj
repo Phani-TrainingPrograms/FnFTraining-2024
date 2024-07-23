@@ -93,6 +93,7 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\bootstrap.rtl.css" />
     <Content Include="Content\bootstrap.rtl.min.css" />
+    <Content Include="EditEmployee.aspx" />
     <Content Include="Ex01BasicControls.aspx" />
     <Content Include="Ex02CalcApp.aspx" />
     <Content Include="Ex04Validation.aspx" />
@@ -114,6 +115,7 @@
     <Content Include="Images\Uladdhal.jpg" />
     <Content Include="LoginPage.aspx" />
     <Content Include="Registraion.aspx" />
+    <Content Include="RepeaterControl.aspx" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.esm.js" />
@@ -139,6 +141,14 @@
     </Compile>
     <Compile Include="ConnectedDataAccess.aspx.designer.cs">
       <DependentUpon>ConnectedDataAccess.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Data\EmployeeDB.cs" />
+    <Compile Include="EditEmployee.aspx.cs">
+      <DependentUpon>EditEmployee.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="EditEmployee.aspx.designer.cs">
+      <DependentUpon>EditEmployee.aspx</DependentUpon>
     </Compile>
     <Compile Include="Ex01BasicControls.aspx.cs">
       <DependentUpon>Ex01BasicControls.aspx</DependentUpon>
@@ -188,6 +198,13 @@
     </Compile>
     <Compile Include="Registraion.aspx.designer.cs">
       <DependentUpon>Registraion.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="RepeaterControl.aspx.cs">
+      <DependentUpon>RepeaterControl.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="RepeaterControl.aspx.designer.cs">
+      <DependentUpon>RepeaterControl.aspx</DependentUpon>
     </Compile>
     <Compile Include="SessionState.aspx.cs">
       <DependentUpon>SessionState.aspx</DependentUpon>
@@ -246,7 +263,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Data\" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
