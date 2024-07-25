@@ -1,0 +1,56 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Main.master.cs" Inherits="SampleWebApp.Main" %>
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+    <title>Main Page</title>
+    <style>
+        .section {
+            display: inline-block;
+            width: 35%;
+            vertical-align: top
+        }
+    </style>
+    <link href="Content/bootstrap.min.css" rel="stylesheet" />
+</head>
+<body>
+    <h1>ASP.NET Features!</h1>
+    <p>
+        ASP.NET is a server side Technology for building rich internet based applications. It provides RAD tool for developing pages using Drag-drop features that was available in WinForms of Visual Basic. Please explore the links below to see various features and examples. 
+        <br />Happy Coding!!!!
+    </p>
+    <asp:Label Text="" ID="lblUser" runat="server" />
+    <form id="form1" runat="server">
+        <div>
+            <asp:Menu runat="server" Orientation="Horizontal">
+                <Items>
+                    <asp:MenuItem NavigateUrl="~/Ex01BasicControls.aspx" Text="Basic controls" />
+                    <asp:MenuItem NavigateUrl="~/Ex02CalcApp.aspx" Text="Calc App" />
+                    <asp:MenuItem NavigateUrl="~/ConnectedDataAccess.aspx" Text="Connected Access" />
+                    <asp:MenuItem NavigateUrl="~/Ex01BasicControls.aspx" Text="Disconnected Model" />
+                    <asp:MenuItem NavigateUrl="~/Ex01BasicControls.aspx" Text="Navigation" />
+                    <asp:MenuItem NavigateUrl="~/Ex01BasicControls.aspx" Text="Session" />
+                    <asp:MenuItem NavigateUrl="~/Ex01BasicControls.aspx" Text="Application" />
+                    <asp:MenuItem NavigateUrl="~/Ex01BasicControls.aspx" Text="Login" />
+                </Items>
+                <StaticMenuItemStyle BackColor="#00CC99" BorderColor="#9999FF" BorderStyle="Groove" BorderWidth="3px" ForeColor="#0000CC" ItemSpacing="5px" VerticalPadding="5px" />
+            </asp:Menu>   
+        </div>
+        <div>
+            <asp:ContentPlaceHolder ID="mainContent" runat="server">
+                <h1>Child content will be replaced here!!!!</h1>
+            </asp:ContentPlaceHolder>
+        </div>
+        <div>
+            <footer>
+                <span>
+                    <i>&copy;All Rights Reserved- Fnf Training-
+                        <asp:Label Text="" runat="server" ID="lblTime" />
+                    </i>
+                </span>
+            </footer>
+        </div>
+    </form>
+</body>
+</html>
