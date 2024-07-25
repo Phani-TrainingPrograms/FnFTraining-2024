@@ -1,0 +1,36 @@
+﻿@{
+    Layout = null;
+    var Options = new string[4];
+    if (ViewData["options"] != null)
+    {
+        Options = ViewData["Options"] as string[];
+    }
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Calc Program</title>
+</head>
+<body>
+    <form asp-action="Index">
+    <div>
+        <input name="firstValue" id="firstValue" placeholder="Enter the First Value"/>
+        <select name="slOptions" id="slOptions">
+                @foreach(var option in Options)
+                {
+                    <option>@option</option>
+                }
+            </select>
+        <input name="secondValue" id="secondValue" placeholder="Enter the Second Value" />
+        <button type="submit"> = </button>
+        @if(ViewBag.Result != null)
+        {
+            <span>The Result: @ViewBag.Result</span>
+        }
+    </div>
+    </form>
+</body>
+</html>

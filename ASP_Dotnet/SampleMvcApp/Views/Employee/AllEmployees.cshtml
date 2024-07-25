@@ -1,0 +1,53 @@
+﻿@model List<SampleMvcApp.Models.Employee>
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>AllEmployees</title>
+</head>
+<body>
+    <nav>
+        <a asp-controller="Employee"asp-action="AddNew">Create New</a>
+    </nav>
+    <div>
+        <h1>List of Employees with Us!!!!</h1>
+        <hr/>
+        <div>
+           <table border="1">
+               <tr>
+                    <th>Employee Id</th>
+                    <th>Employee Name</th>
+                    <th>Employee Address</th>
+                    <th>Employee Salary</th>
+                    <th>Image</th>
+                    <th>Options</th>
+               </tr>
+               @foreach(var emp in Model)
+               {
+                   <tr>
+                        <td>@emp.EmpId</td>
+                        <td>@emp.EmpName</td>
+                        <td>@emp.EmpAddress</td>
+                        <td>@emp.EmpSalary</td>
+                        <td>
+                            <img src="@emp.EmpImage" style="width : 100px; height : 150px"/>
+                        </td>
+                        <td>
+                            <a asp-controller="Employee" asp-action="Edit" asp-route-id="@emp.EmpId">                                
+                                Edit
+                            </a>
+                            <a asp-controller="Employee" asp-action="Delete" asp-route-id="@emp.EmpId">X</a>
+                        </td>
+                   </tr>
+               }
+
+           </table>
+        </div>
+    </div>
+</body>
+</html>
