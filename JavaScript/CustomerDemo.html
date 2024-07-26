@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./jquery.min.js"></script>
+    <script src="./Customer.js"></script>
+    <link rel="stylesheet" href="./bootstrap.min.css">
+    <script>
+        //3 ways: element, id, class
+        const repo = new CustomerRepo();
+        function createRow(customer){
+            const row =`<tr>
+                <td>${customer.CustomerId}</td>
+                <td>${customer.CustomerName}</td>
+                <td>${customer.CustomerAddress}</td>
+                <td><a class='btn btn-primary'>Edit</a></td>
+            `;
+            return row;
+        }
+        function fillData(data){
+           // $("table tbody").clear();
+            $.each(data, (index, element)=>{
+                let row = createRow(element);
+                $("table tbody").append(row)
+            })
+        }
+        function populateCustomers(){
+            const data = repo.getAll();
+            fillData(data);
+        }
+        $(document).ready(function(){
+           $("section").fadeOut(2000);
+           $(".navbar-nav > a:first").click(function(){
+           $("section").fadeOut(2000);
+            $("section:eq(0)").fadeIn(2000);
+            populateCustomers();
+           })
+
+           $(".navbar-nav > a:eq(1)").click(function(){
+           $("section").fadeOut(2000);
+            $("section:eq(1)").fadeIn(2000);
+           })
+        });
+    </script>
+</head>
+<body>
+        <nav class="navbar navbar-expand-sm navbar-light bg-primary">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="#">Main Menu</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarID"
+                    aria-controls="navbarID" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarID">
+                    <div class="navbar-nav">
+                        <a class="nav-link active " aria-current="page" href="#">All Customers</a>
+                        <a class="nav-link" aria-current="page" href="#">Add Customer</a>
+                        <a class="nav-link" aria-current="page" href="#">About Us</a> 
+                    </div>
+                </div>
+            </div>
+        </nav>
+        <div class="container-fluid">
+            <div class="row">
+               <div class="col-md-7">
+                <section>
+                    <h2>List of Customers with Us!!!</h2>
+                    <table class="table table-bordered table-striped">
+                        <thead>
+                            <tr>
+                                <th>Customer ID</th>
+                                <th>Customer Name</th>
+                                <th>Customer Address</th>
+                                <th>Options</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                        </tbody>
+                    </table>
+                </section>             
+               </div>
+               <div class="col-md-5">
+                   <section>
+                        <h2>Register New Customer</h2>
+                        <p>
+                            <input placeholder="CustomerId" class="form-control" id="cstId"/>
+                        </p>
+                        <p>
+                            <input placeholder="Customer Name" class="form-control" id="cstName"/>
+                        </p>
+                        <p>
+                            <input placeholder="Customer Address" class="form-control" id="cstAddress"/>
+                        </p>
+                        <p>
+                             <button class="btn btn-info">Save Changes</button>   
+                             <button class="btn btn-danger">Cancel Changes</button>   
+                        </p>
+                    </section>
+               </div>
+            </div>
+        </div>
+</body>
+</html>

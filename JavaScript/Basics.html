@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+      //UI functions: alert, prompt, confirm
+      //let or var, const.
+      //datatypes: number, string, boolean, object.
+      //parseInt and parseFloat are used to convert strings to numbers. If strings dont have a valid number, then its NaN. There are functions in JS to check if the input is a valid no or not.
+     //statements and expressions: if, switch, while, do..while...
+     //operators: == and ===
+     //array example:
+     //functions can be created in 3 ways in JS...
+    //classes and objects..: Singleton objects, function based classes and new ES6 classes.
+    //explore inheritance in Js using extends.   
+    //How to use dateTime.   
+    const temp ={
+        id : 123, Name: "Phaniraj"
+    };
+    temp.address ="Bangalore";
+    temp.display = function(){
+        return `${temp.Name} is from ${temp.address}`
+    }
+    console.log(temp);
+    console.log(temp.display())
+    //Instance based classes(Old syntax of Js)
+    const emp = function(id, name, address){
+        this.id = id;
+        this.name =name;
+        this.address = address
+    }
+
+
+    
+    const emp1 = new emp(123, "Phaniraj", "Bangalore");
+    console.log(emp1);
+
+    const cst = new Customer(123, "TestName", "Bangalore");
+    console.log(cst);
+    //Class is a collection of members like properties and methods...
+    for (const member in cst) {
+        console.log(`PropertyName: ${member}===> Value: ${cst[member]}`);
+    }
+    </script>
+</body>
+</html>
