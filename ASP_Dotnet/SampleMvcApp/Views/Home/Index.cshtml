@@ -1,0 +1,94 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ajax Calls using jQuery</title>
+    <link rel="stylesheet" href="./lib/bootstrap/css/bootstrap.min.css">
+    <script src="./lib/jquery/jquery.min.js"></script>
+    <script>
+        const url = "MovieDb/AllMovies"
+
+        function createRow(movie) {
+            const row = `<tr>
+                        <td>${movie.title}</td>
+                        <td>${movie.description}</td>
+                        <td>${movie.director}</td>
+                        <td>${movie.actors}</td>
+                        <td>${movie.duration}</td>
+                        <td>
+                            <a href="#" class="btn btn-secondary" onClick="OnEdit(${movie.title})">Edit
+
+                        </td>
+                                </tr>`
+            return row;
+        }
+        function onGetRecordsSuccess(result) {
+            $("table tbody tr").remove();
+            $.each(result, function (index, value) {
+                const row = createRow(value);
+                $("table tbody").append(row);
+            })
+        }
+        function showRecords() {
+            $.get(url, onGetRecordsSuccess);
+        }
+        function findRecords() {
+            const title = prompt("Enter the Title that U want to find");
+            const findUrl = `MovieDb/Find?title=${title}`
+            $.get(findUrl, (movie) => {
+                const msg = `${movie.title} was directed by ${movie.director}`
+                alert(msg);
+            });
+        }
+        function addRecord() {
+            alert("add")
+        }
+        function deleteRecords() {
+            alert("delete")
+        }
+
+        function init() {
+            $("#btnShow").click(showRecords);
+            $("#btnFind").click(findRecords);
+            $("#btnAdd").click(addRecord);
+            $("#btnDelete").click(deleteRecords);
+        }
+
+        $(document).ready(init);
+    </script>
+</head>
+<body>
+    <nav class="navbar bg-light">
+        <button id="btnShow" class="btn btn-info m-4">Show Records</button>
+        <button id="btnFind" class="btn btn-primary m-4">Find Records</button>
+        <button id="btnAdd" class="btn btn-secondary m-4">Add Records</button>
+        <button id="btnDelete" class="btn btn-warning m-4">Delete Records</button>
+    </nav>
+    <h1>Purpose of this App</h1>
+    <hr>
+    <div>
+        <p>This App will call the APIs of the MVC Controller and work with the data</p>
+    </div>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-11">
+                <table class="table table-bordered table-striped">
+                    <thead>
+                        <tr>
+                            <th>Title</th>
+                            <th>Description</th>
+                            <th>Director</th>
+                            <th>Actors</th>
+                            <th>Duration</th>
+                            <th>Options</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
