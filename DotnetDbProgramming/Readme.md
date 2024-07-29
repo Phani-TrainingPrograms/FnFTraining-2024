@@ -17,3 +17,8 @@ update-database
 1. Microsoft.EntityFrameworkCore
 2. Microsoft.EntityFrameworkCore.Tools
 3. Microsoft.EntityFrameworkCore.SqlServer 
+
+### For DB First Approach
+```
+Scaffold-DbContext "Server=.\SQLEXPRESS; Database=FnfTraining; Trusted_Connection=True; TrustServerCertificate=True" Microsoft.EntityFrameworkCore.SqlServer -OutputDir Data
+```
