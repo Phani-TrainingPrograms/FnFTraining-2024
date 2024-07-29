@@ -1,0 +1,28 @@
+﻿@model SampleMvcFramework.Models.Stock
+
+@{
+    ViewBag.Title = "OnEdit";
+}
+
+<h2>OnEdit</h2>
+<hr />
+@using (Html.BeginForm())
+{
+    //Helper function that provides the editors for all the properties.
+    @*@Html.EditorForModel()*@
+
+    <p>
+        Stock Id: @Html.DisplayFor(m => m.StockId)
+        @Html.HiddenFor(m=>m.StockId)
+    </p>
+    <p>
+        Stock Name: @Html.EditorFor(m => m.StockName, new { htmlAttributes = new { @class = "form-control" } })
+    </p>
+    <p>
+        Stock Desc: @Html.EditorFor(m => m.StockDescription, new { htmlAttributes = new { @class = "form-control" } })
+    </p>
+    <p>
+        Stock Price: @Html.EditorFor(m => m.UnitPrice, new { htmlAttributes = new { @class = "form-control" } })
+    </p>
+    <input type="submit" class="btn btn-danger" value="Update" />
+}
