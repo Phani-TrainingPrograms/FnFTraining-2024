@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Cors;
+using Microsoft.AspNetCore.Mvc;
 using SampleMvcApp.Models;
 /*
 Ajax is a capability of refreshing parts of the page instead of the whole page.
@@ -15,6 +16,8 @@ namespace SampleMvcApp.Controllers
     /// <summary>
     /// The purpose of this controller is to provide the APIs for accessing and fetching data to the Front End. 
     /// </summary>
+    /// 
+    [EnableCors("cors")]
     public class MovieDbController : Controller
     {
         private readonly EmployeeDbContext _DbContext;
@@ -30,8 +33,8 @@ namespace SampleMvcApp.Controllers
 
         public JsonResult Find(string title)
         {
-            var movie = _DbContext.Movies.FirstOrDefault(m => m.Title == title);
-            return Json(movie);
+            var movies = _DbContext.Movies.Where(m =>m.Title.Contains(title)).ToList();
+            return Json(movies);
         }
 
         [HttpPost]
@@ -58,5 +61,7 @@ namespace SampleMvcApp.Controllers
             _DbContext.SaveChanges();
             return "Movie Updated to the database";
         }
+
+        
     }
 }

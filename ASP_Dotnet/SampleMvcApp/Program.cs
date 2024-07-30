@@ -18,7 +18,18 @@ namespace SampleMvcApp
             {
                 options.UseSqlServer(builder.Configuration.GetConnectionString("myConnection"));
             });
-//////////////////////////////////////////////////////////////////////////
+            //////////////////////////////////////////////////////////////////////////
+            //////////////////////////CORS ENABLING///////////////////////////////////
+            builder.Services.AddCors(options =>
+            {
+                options.AddPolicy("cors", policy =>
+                {
+                    policy.AllowAnyOrigin();
+                    policy.AllowAnyMethod();
+                    policy.AllowAnyHeader();
+                });
+            });
+            //////////////////////////////////////////////////////////////////////////
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
@@ -31,11 +42,11 @@ namespace SampleMvcApp
             app.UseRouting();
 
             app.UseAuthorization();
-
+            app.UseCors();
             //Routing: A pattern of the URL that the User should send for this Application. Controller is the object that performs the operations. Action is a method that fetches the required model and injects the model object into a view and returns that view. 
             app.MapControllerRoute(
                 name: "default",
-                pattern: "{controller=Traversing}/{action=Index}/{id?}");
+                pattern: "{controller=Home}/{action=Index}/{id?}");
 
             app.Run();
         }

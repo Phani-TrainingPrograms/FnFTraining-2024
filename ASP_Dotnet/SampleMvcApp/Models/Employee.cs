@@ -19,6 +19,7 @@ namespace SampleMvcApp.Models
     public class EmployeeDbContext : DbContext
     {
         public DbSet<Employee> Employees { get; set; }
+        public DbSet<Movie> Movies { get; set; }
 
         //Use this constructor for DI of Configuration in the Program.cs
         public EmployeeDbContext(DbContextOptions options) :base(options)

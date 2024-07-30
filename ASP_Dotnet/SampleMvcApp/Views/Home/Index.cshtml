@@ -24,6 +24,7 @@
             return row;
         }
         function onGetRecordsSuccess(result) {
+            console.log(result)
             $("table tbody tr").remove();
             $.each(result, function (index, value) {
                 const row = createRow(value);
@@ -34,15 +35,19 @@
             $.get(url, onGetRecordsSuccess);
         }
         function findRecords() {
-            const title = prompt("Enter the Title that U want to find");
+            const title = $("#txtSearch").val()
             const findUrl = `MovieDb/Find?title=${title}`
-            $.get(findUrl, (movie) => {
-                const msg = `${movie.title} was directed by ${movie.director}`
-                alert(msg);
-            });
+            $.get(findUrl, onGetRecordsSuccess);
         }
         function addRecord() {
-            alert("add")
+            const url = "MovieDb/AddMovie";
+            const title = $("#txtNewTitle").val();
+            const desc = $("#txtNewDesc").val();
+
+            let movie = { "title": title, "description": desc, "director": "\tShau Templeton", "duration": 142, "actors": "\t\r\nClint Eastwood\r\n", "rating": 8.5 }
+            $.post(url, movie, (res) => {
+                alert(res);
+            })
         }
         function deleteRecords() {
             alert("delete")
@@ -73,6 +78,7 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-11">
+                <input type="search" id="txtSearch" placeholder="Search Movie" class="form-control" onchange="findRecords()"/>
                 <table class="table table-bordered table-striped">
                     <thead>
                         <tr>
@@ -87,6 +93,19 @@
                     <tbody>
                     </tbody>
                 </table>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <section>
+                    <h1>New Movie Registration</h1>
+                    <hr/>  
+                    <input id="txtNewTitle" placeholder="Enter the movie title" class="form-control"/>
+                    <input id="txtNewDesc" placeholder="Enter the movie Desc" class="form-control"/>
+                    <input id="txtDirector" placeholder="Enter the movie Director" class="form-control" />
+                    <input id="txtNewActor" placeholder="Enter the movie Actor" class="form-control" />
+                    <button onclick="addRecord()">Add Movie</button>
+                </section>
             </div>
         </div>
     </div>
