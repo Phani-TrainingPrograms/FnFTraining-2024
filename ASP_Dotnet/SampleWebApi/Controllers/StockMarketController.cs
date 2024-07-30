@@ -26,6 +26,18 @@ namespace SampleWebApi.Controllers
             return result;
         }
 
+        [HttpGet]
+        [Route("Stocks/{id}")]
+        public StockTable GetStock(int id)
+        {
+           var res =  _context.StockTables.FirstOrDefault(s => s.StockId == id);
+            if (res == null)
+            {
+                throw new Exception("No Stock found");
+            }
+            return res;
+        }
+
         [HttpPost]
         [Route("Stocks")]
         public ObjectResult AddStock(StockTable stock)
