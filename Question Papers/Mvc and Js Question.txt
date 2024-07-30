@@ -1,4 +1,4 @@
-JavaScript and MVC Test
+# JavaScript and MVC Test
 I want a Personal Expense Manager Software developed in Javascript that shall store all expenses into a database. This is a Single User application, so there is no scope of Authentication here. The User interface is developed using Javascript and jQuery. 
 The data will be stored in the database using an MVC Controller that has APIs to get the expenses and add Expenses. U must use EF Core for data base interaction. U can either use CF approach or the DBF approach. 
  
