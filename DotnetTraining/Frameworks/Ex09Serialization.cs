@@ -1,4 +1,4 @@
-﻿using FrameworkExamples.Entities;
+﻿using FrameworkExamples.Data;
 using FrameworkExamples.Utils;
 using System;
 using System.Collections.Generic;

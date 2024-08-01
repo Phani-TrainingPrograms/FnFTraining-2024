@@ -1,4 +1,5 @@
-﻿using FrameworkExamples.Entities;
+﻿using FrameworkExamples.Data;
+using FrameworkExamples.Utils;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,7 +14,7 @@ namespace FrameworkExamples
         {
             try
             {
-            var fileName = Ex06FileIO.Configuration["FileOptions:FilePath"];
+            var fileName = AppSettings.Configuration["FileOptions:FilePath"];
             File.AppendAllText(fileName, cst.ToString());
 
             }
@@ -24,7 +25,7 @@ namespace FrameworkExamples
         }
         static void Main(string[] args)
         {
-            Ex06FileIO.Initialize();   
+            AppSettings.Initialize();   
             Customer cst = new Customer { 
                CustomerAddress ="Bangalore", CustomerID =1, CustomerName ="Phaniraj"
             };
