@@ -1,0 +1,37 @@
+﻿@model List<SampleMvcFramework.Models.Stock>
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+@Html.ActionLink("Add New Stock", "AddNewStock", new {}, new { @class = "btn btn-info"})
+<hr />
+<div>
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>StockId</th>
+                <th>Stock Name</th>
+                <th>Stock Description</th>
+                <th>Unit Price</th>
+                <th>Options</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var stock in Model)
+            {
+                <tr>
+                    <td>@stock.StockId</td>
+                    <td>@stock.StockName</td>
+                    <td>@stock.StockDescription</td>
+                    <td>@stock.UnitPrice</td>
+                    <td>
+                        @Html.ActionLink("Edit"/*Text to Display*/, "OnEdit"/*Action in the Controller*/, new { id = stock.StockId }/*value for the id*/, new { @class = "btn btn-primary" })
+                        @Html.ActionLink("Delete"/*Text to Display*/, "OnDelete"/*Action in the Controller*/, new { id = stock.StockId }/*value for the id*/, new { @class = "btn btn-danger" })
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+

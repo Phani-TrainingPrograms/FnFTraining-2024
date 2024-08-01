@@ -1,0 +1,37 @@
+﻿@model SampleMvcApp.Models.Employee
+
+@{
+    //View that has a Model object associated is called as STRONGLY TYPED VIEW
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>AddNew</title>
+    <style>
+        p{
+            padding: 3px;
+            margin : 5px;
+        }
+    </style>
+</head>
+<body>
+    <form asp-action="AddNew" method="post">
+        <h1>Add New Employee Details</h1>
+        <hr/>
+        <div>
+            <p>Employee Name: <input asp-for="EmpName"/></p>
+            <p>Employee Address: <input asp-for="EmpAddress" /></p>
+            <p>Employee Salary: <input asp-for="EmpSalary" /></p>
+            <p>Employee Picture: <input asp-for="EmpImage" /></p>
+            <p>
+                <button type="submit">Add New Employee</button>
+                <a asp-action="AllEmployees">Back</a>
+            </p>
+        </div>
+    </form>
+</body>
+</html>
