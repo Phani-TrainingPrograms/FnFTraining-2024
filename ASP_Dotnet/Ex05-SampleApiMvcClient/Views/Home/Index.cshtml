@@ -1,0 +1,31 @@
+﻿@model List<Stock>
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">List of Stocks registered with Us!!</h1>
+    <div>
+       <table class="table table-bordered table-striped">
+           <thead class="bg-info">
+               <tr>
+                    <th>Stock Id</th>
+                    <th>Stock Name</th>
+                    <th>Options</th>
+               </tr>
+           </thead>
+           <tbody>
+                @foreach(var item in Model)
+                {
+                    <tr>
+                        <td>@item.StockId</td>
+                        <td>@item.StockName</td>
+                        <td>
+                            <a asp-action="Details" asp-route-id="@item.StockId" class="btn btn-info">Details</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+       </table>
+    </div>
+</div>
