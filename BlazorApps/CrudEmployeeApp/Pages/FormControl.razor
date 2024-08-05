@@ -1,0 +1,40 @@
+﻿@using CrudEmployeeApp.Models
+<EditForm Model="@emp" OnValidSubmit="@OnSubmit">
+    <h1>@Heading</h1>
+    <div class="p-4">
+        <p>
+            Employee ID:
+            <InputNumber @bind-Value="emp.EmpId" class="form-control" />
+        </p>
+        <p>
+            Employee Name:
+            <InputText @bind-Value="emp.EmpName" class="form-control" />
+        </p>
+        <p>
+            Employee Address:
+            <InputText @bind-Value="emp.EmpAddress" class="form-control" />
+        </p>
+        <p>
+            Employee Salary:
+            <InputNumber @bind-Value="emp.EmpSalary" class="form-control" />
+        </p>
+        <p>
+            <button type="submit" class="btn btn-success">@ButtonText</button>
+        </p>
+    </div>
+</EditForm>
+
+@code {
+    //Inputs for this form: employee, text msg for the button, function which performs the operations:add or update. 
+    [Parameter]
+    public Employee emp { get; set; }
+
+    [Parameter]
+    public string ButtonText { get; set; }
+
+    [Parameter]
+    public string Heading { get; set; } = "Add New Record";
+
+    [Parameter]
+    public EventCallback OnSubmit { get; set; }
+}

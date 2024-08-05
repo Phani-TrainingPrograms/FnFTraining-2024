@@ -1,0 +1,37 @@
+﻿@page "/Details/{id:int}"
+@inject NavigationManager nav
+@inject IJSRuntime js
+@using CrudEmployeeApp.Models
+<h3>Details of the Employee</h3>
+@if (selected == null)
+{
+    <text>Employee is not found</text>
+}
+else
+{
+   <FormControl emp="@selected" ButtonText="Update Changes" Heading="Edit Employee" OnSubmit="@OnUpdate"/>
+}
+@code {
+    [Parameter]//This value comes from external components to UR component. 
+    public int id { get; set; }
+
+    private Employee selected { get; set; } = null;
+
+    protected override async Task OnInitializedAsync()
+    {
+        selected = EmployeeRepo.GetById(id);
+    }
+
+    private async Task OnUpdate()
+    {
+        if (await js.InvokeAsync<bool>("confirm", $"Do U really want to Update"))
+        {
+            EmployeeRepo.UpdateEmployee(selected);
+            nav.NavigateTo("AllEmployees");
+        }
+        else
+        {
+            await js.InvokeVoidAsync("alert", $"User has seleted to cancel the operation");
+        }
+    }
+}

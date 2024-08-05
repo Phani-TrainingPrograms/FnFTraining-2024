@@ -1,0 +1,67 @@
+﻿@page "/allEmployees"
+@inject IEmpService service;
+@using CrudEmployeeApp.Models
+@using CrudEmployeeApp.Services
+
+<div>
+    <h1>List of Employees</h1>
+    <hr/>
+    @if(empList == null)
+    {
+        <text>Loading....</text>
+    }else if(empList.Count == 0)
+    {
+        <text>No Employee Records are found!!!</text>
+    }
+    else
+    {
+        <input type="search" class="form-control" placeholder="Seach by Name" @bind="searchName" @bind:after="SearchByName"/>
+        <table class="table">
+            <thead>
+                <tr>
+                    <td>Employee Id</td>
+                    <td>Employee Name</td>
+                    <td>Employee Address</td>
+                    <td>Employee Salary</td>
+                    <td>Options</td>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach(var emp in empList)
+                {
+                    <tr>
+                        <td>@emp.EmpId</td>
+                        <td>@emp.EmpName</td>
+                        <td>@emp.EmpAddress</td>
+                        <td>@emp.EmpSalary</td>
+                        <td>
+                            <a class="btn btn-success" href="Details/@emp.EmpId">Edit</a>
+                            <a class="btn btn-danger" @onclick="@(()=> OnDelete(emp.EmpId))">Delete</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+</div>
+
+@code {
+    private List<Employee> empList = null;
+
+    public string searchName { get; set; } = string.Empty;
+
+    protected override async Task OnInitializedAsync()
+    {
+        empList = await service.GetAll();
+    }
+
+    private async Task SearchByName()
+    {
+        empList = await service.GetByName(searchName);
+    }
+
+    private void OnDelete(int id)
+    {
+        EmployeeRepo.Delete(id);
+    }
+}

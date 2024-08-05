@@ -1,0 +1,18 @@
+﻿@page "/AddEmployee"
+@inject NavigationManager nav
+@inject IJSRuntime js
+@using CrudEmployeeApp.Models
+
+<FormControl Heading="Register New Employee" ButtonText="Add Record" OnSubmit="@addNewEmployee" emp="@emp" />
+
+@code {
+    private Employee emp = new Employee();
+
+    async Task addNewEmployee(){
+        if (await js.InvokeAsync<bool>("confirm", $"Do U really want to add the record?"))
+        {
+            EmployeeRepo.AddEmployee(emp);
+            nav.NavigateTo("AllEmployees");
+        }
+    }
+}
