@@ -11,8 +11,10 @@ namespace CrudEmployeeApp
             var builder = WebAssemblyHostBuilder.CreateDefault(args);
             builder.RootComponents.Add<App>("#app");
             builder.RootComponents.Add<HeadOutlet>("head::after");
-
-            builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri("http://localhost:5175/api/CrudEmployee/")});
+            builder.Services.AddLogging();
+            var url = builder.Configuration.GetSection("httpUrls").GetSection("baseUrl").Value;
+            Console.WriteLine(url);
+            builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(url) });
 
             builder.Services.AddScoped<IEmpService, CrudEmployeeService>();
 
