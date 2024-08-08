@@ -34,6 +34,25 @@ export class EmpListComponent implements OnInit {
 
   }
 
+  onDataUpdated(modifiedData : Employee){debugger;
+    const index = this.empList.findIndex(e =>e.empId == modifiedData.empId);
+    if(index < 0){
+      alert("Not available to update");
+    }else{
+      this.empList.splice(index, 1, modifiedData);
+    }
+  }
+
+  onDataDeleted(empId:Number){
+    
+    const index = this.empList.findIndex(e =>e.empId == empId);
+    if(index < 0){
+      alert("Not available to delete");
+    }else{
+      this.empList.splice(index, 1);
+      alert("Employee deleted successfully")
+    }
+  }
   //constructors are needed to perform DI...
   empList : Employee[] = [];
 

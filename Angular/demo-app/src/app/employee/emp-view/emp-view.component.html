@@ -1,8 +1,20 @@
 <div style="border: 1px solid lightcoral; margin: 5px;">
-    <h1>{{empObj.empName}}</h1>
     <img [src]="empObj.empPic"/>
     <hr>
     <p>Id : {{empObj.empId}}</p>
-    <p>{{empObj.empAddress}}</p>
-    <p>{{empObj.empSalary}}</p>
+    <p>
+        Name:
+        <input class="form-control" [(ngModel)] ="empObj.empName" placeholder="Name"/>
+    </p>
+    <p>Address
+        <input class="form-control" [(ngModel)] ="empObj.empAddress" placeholder="Address">
+    </p>
+    <p>
+        Salary:
+        <input class="form-control" [(ngModel)] ="empObj.empSalary"/>
+    </p>
+    <p>
+        <button class="btn btn-primary m-2" (click)="onUpdateClick()">Edit</button>
+        <button class="btn btn-danger m-2" (click)="onDeleteClick()">Delete</button>
+    </p>
 </div>

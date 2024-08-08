@@ -1,7 +1,7 @@
 <div class="container">
  <div class="row">
     <div *ngFor="let emp of empList" class="col-md-5">
-        <app-emp-view [empObj]="emp"></app-emp-view>
+        <app-emp-view [empObj]="emp" (onDelete)="onDataDeleted($event)" (onUpdate)="onDataUpdated($event)"></app-emp-view>
     </div>
  </div>   
 </div>
