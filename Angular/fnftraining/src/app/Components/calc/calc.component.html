@@ -1,0 +1,27 @@
+<div>
+    <h1>{{title}}</h1>
+    <hr/>
+    <p>
+        Enter the First Value:
+        <input type="number" placeholder="First Value" [(ngModel)]="fValue"/> 
+    </p>
+    <p>
+        Enter the Second Value:
+        <input type="number" placeholder="Second Value" [(ngModel)] = "sValue"/> 
+    </p>
+    <p>
+        Select the Choice:
+        <select [(ngModel)]="operand">
+            <option>+</option>
+            <option>-</option>
+            <option>X</option>
+            <option>/</option>
+        </select>
+    </p>
+    <p>
+        <button (click)="onGetResult()">Get Result</button>
+    </p>
+    <p>
+        The Result: {{result}}
+    </p>
+</div>

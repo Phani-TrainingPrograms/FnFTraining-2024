@@ -1,0 +1,37 @@
+<div>
+    <h1>List of Employees with Us!!!</h1>
+    <!-- <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Employee Id</th>
+                <th>Employee Name</th>
+                <th>Employee Address</th>
+                <th>Employee Salary</th>
+                <th>Options</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let emp of empList">
+                <td>{{emp.empId}}</td>
+                <td>{{emp.empName}}</td>
+                <td>{{emp.empAddress}}</td>
+                <td>{{emp.empSalary}}</td>
+                <td>
+                    <a class="btn btn-info" href="#" (click)="onEdit(emp)">
+                        <i class="fa fa fa-pencil" aria-hidden="true"></i>                        
+                    </a>
+                    <a class="btn btn-danger" href="#" (click)="onDelete(emp)">
+                        <i class="fa fa fa-trash" aria-hidden="true"></i>                        
+                    </a>
+                </td>
+            </tr>
+        </tbody>
+    </table> -->
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6" *ngFor="let rec of empList">
+                    <app-emp-detail [empObj]="rec" />
+                </div>
+            </div>
+        </div>
+   
