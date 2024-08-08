@@ -1,0 +1,28 @@
+﻿@page "/Edit/id"
+@using BlazerApp.Models
+@using BlazerApp.Services
+@inject NavigationManager nav
+@inject IProductService service
+
+<div>
+    <h2>Product Details</h2>
+    <hr/>
+    <p> Product Id: <input @bind-value="selected.ProductId"/></p>
+    <p> Product Name: <input @bind-value="selected.ProductName"/></p>
+    <p> Product Price: <input @bind-value="selected.Price"/></p>
+    <p>
+        <button>Save changes</button>
+    </p>
+</div>
+@code {
+    [Parameter]
+    public int productId { get; set; }
+
+    public Product selected { get; set; } = new Product();
+
+    protected async override Task OnInitializedAsync()
+    {
+        selected = await service.GetProductByIdAsync(productId);
+        await base.OnInitializedAsync();
+    }
+}

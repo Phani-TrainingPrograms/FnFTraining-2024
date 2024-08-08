@@ -1,0 +1,39 @@
+﻿@page "/ListofProducts"
+@using BlazerApp.Models
+@using BlazerApp.Services
+@inject IProductService service;
+
+<Header/>
+<h3>ProductList</h3>
+
+<hr/>
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <td>ProductId</td>
+            <td>ProductName</td>
+            <td>Price</td>
+            <td>Options</td>
+        </tr>
+    </thead>
+    @foreach(var pr  in products)
+    {
+        <tr>
+            <td>@pr.ProductId</td>
+            <td>@pr.ProductName</td>
+            <td>@pr.Price</td>
+            <td>
+                <a href="@/Edit/pr.ProductId" class="btn btn-success">Edit</a>
+                <a href="@/Delete/@pr.ProductId" class="btn btn-danger">Delete</a>
+            </td>
+        </tr>
+    }
+</table>
+@code {
+    private List<Product> products = new List<Product>();
+    
+    protected override async Task OnInitializedAsync()
+    {
+        products = (await service.GetProductsAsync()).ToList();
+    }
+}
