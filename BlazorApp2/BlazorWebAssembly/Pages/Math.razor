@@ -1,0 +1,61 @@
+﻿@page "/Math"
+@using BlazorWebAssembly.Services
+@inject IArithematicService mathService;
+
+<h3>Math</h3>
+<p>
+    Enter the First Value:
+    <InputNumber @bind-Value="firstValue" />
+</p>
+@if ((option != "Square" && option != "SquareRoot"))
+{
+    <p>
+        Enter the Second Value:
+        <InputNumber @bind-Value="secondValue" />
+    </p>
+}
+<p>
+    <InputSelect @bind-Value="option">
+        @foreach (var opt in options)
+        {
+            <option>@opt</option>
+        }
+    </InputSelect>
+</p>
+<p>
+    <button @onclick="onSubmit">Get Result</button>
+</p>
+
+@code {
+
+    double firstValue;
+    double secondValue;
+    string option = string.Empty;
+
+    string[] options = new string[] { "Add", "Subtract", "Multiply", "Divide", "Square", "SquareRoot" };
+
+    string title = "Apple 123";
+    double result = 0.0;
+
+    //Use this function to initialize the members of UR component.
+    protected override void OnInitialized()
+    {
+
+        firstValue = 123;
+        secondValue = 234;
+        option = "Add";
+        base.OnInitialized();
+    }
+
+    void onSubmit()
+    {
+        switch (this.option)
+        {
+            case "Add": result = mathService.AddFunction(firstValue, secondValue); break;
+            case "Subtract": result = mathService.SubtractFunction(firstValue, secondValue); break;
+            case "Multiply": result = mathService.MultiplyFunction(firstValue, secondValue); break;
+            case "Divide": result = mathService.DivideFunction(firstValue, secondValue); break;
+        }
+
+    }
+}

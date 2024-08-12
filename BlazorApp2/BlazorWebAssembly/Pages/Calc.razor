@@ -1,0 +1,89 @@
+﻿@page "/"
+@using BlazorWebAssembly.Models
+@using BlazorWebAssembly.Services
+
+@inject IArithematicService service;
+<h1>My basic Calc Program</h1>
+<hr/>
+<EditForm Model="@Calculation" OnValidSubmit="@submit">
+    <div>
+        <p>Enter the First Value : <InputNumber @bind-Value=Calculation.FirstValue /> </p>
+        <p>Enter the Second Value : <InputNumber @bind-Value=Calculation.SecondValue /> </p>
+        <p>Select the Option : 
+            <InputSelect @bind-Value=Calculation.Option>
+                @foreach(var option in Options)
+                {
+                    <option>@option</option>
+                }
+            </InputSelect>
+        </p>
+        <p>
+            <button class="btn btn-primary" type="submit">Get Result</button>
+        </p>
+        <p>@result</p>
+        <p>
+            <DataAnnotationsValidator/> 
+            <ValidationSummary/>
+        </p>
+    </div>
+</EditForm>
+
+@code {
+    public Calculator Calculation { get; set; }
+    private double result = 0.0;
+    public string[] Options { get; set; }
+
+    protected override void OnInitialized()
+    {
+        Calculation = new Calculator();
+        var values = Enum.GetValues(typeof(Options));
+        var list = new List<string>();
+        foreach(var val in values)
+        {
+            list.Add(val.ToString());
+        }
+        Options = list.ToArray();
+        base.OnInitialized();
+    }
+
+    void submit()
+    {
+        switch(Calculation.Option)
+        {
+            case Models.Options.Add: 
+                result = service.AddFunction(Calculation.FirstValue, Calculation.SecondValue); 
+                break;
+            case Models.Options.Subtract:
+                result = service.SubtractFunction(Calculation.FirstValue , Calculation.SecondValue); 
+                break;
+            case Models.Options.Multiply:
+                result = service.MultiplyFunction (Calculation.FirstValue, Calculation.SecondValue); 
+                break;
+            case Models.Options.Divide:
+                result = service.DivideFunction(Calculation.FirstValue, Calculation.SecondValue);
+                break;
+            case Models.Options.Square:
+                result = service.SquareFunction(Calculation.FirstValue); 
+                break;
+            case Models.Options.SquareRoot:
+                result = service.SquareRoot(Calculation.FirstValue);
+                break;
+        }
+    }
+    /*
+     * How to create Blazor App?
+     * What kind of Blazor App should we select?
+     * How to create Components in Blazor. 
+     * How to perform Inputs and Outputs in Blazor. 
+     * How to handle events in Blazor. 
+     * How to inject services in Components.
+     * How to handle Models and Validations in Blazor. 
+     * How to access REST APIs in Blazor.  
+     * Create a Web API with appropriate controller with all the CURD operations. 
+        * Create a database table using CF approach.  
+     * Create a Service component in blazor and accesses the Web API end points. 
+     * Inject the service in the Components and call the APIs to display the data.
+     * Navigate across the Components in Blazor.
+     * How to pass data from the Outer Component into Inner Component in Blazor.   
+     */
+}
