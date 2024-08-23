@@ -1,0 +1,22 @@
+<p>{{postedData | json}}</p>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-8">
+            <h2>Post Ur Travel Info</h2>
+            <hr>
+            <p>
+                Enter the Id: <input [(ngModel)] = "postedData.id" class="form-control"/>
+            </p>
+            <p>
+                Enter the Title: <input [(ngModel)] = "postedData.title" class="form-control"/>
+            </p>
+            <p>
+                Enter the Description: <input [(ngModel)] = "postedData.desc" class="form-control"/>
+            </p>
+            <p>
+                <button class="btn btn-danger" (click)="onSubmit()">Save Changes</button>
+            </p>
+        </div>
+    </div>
+</div>

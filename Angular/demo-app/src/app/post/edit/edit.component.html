@@ -1,0 +1,26 @@
+{{post | json}}
+<div class="container">
+    <div class="row">
+        <div class="col-md-8">
+            <h1>Edit Post</h1>
+            <hr>
+            <p>Post Id: {{post.id}}</p>
+            <p>
+                <b>Title:</b>
+                <input type="text" class="form-control" [(ngModel)] ="post.title"/>
+            </p>
+            <p>
+                <b>Description: </b>
+                <textarea class="form-control" [(ngModel)] = "post.desc">
+                    
+                </textarea>
+            </p>
+            <p>
+                <button class="btn btn-primary m-2" (click)="onSumbit()">Save Changes</button>
+                <button class="btn btn-success" [routerLink] = "['/post/index']">
+                    <i class="fa fa-arrow-circle-left" aria-hidden="true"></i>
+                    Cancel</button>
+            </p>
+        </div>
+    </div>
+</div>
